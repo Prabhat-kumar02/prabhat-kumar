@@ -1,0 +1,49 @@
+There are 3 students that  arrive at the same, we need an algorithm as to how the students are to be served food.
+Given that;
+LRTF (Longest Remaining Time Algorithm) is to be used.
+Also, the questions states that, if two students have the same remaining time, the student with the lowest id number is served first.
+Theoretical Explanation:
+LRTF is to be used. Student C has the longest remaining time. So the serving starts with C.
+After C is served for 4 minutes, the remaining time of B and C are equal. B has the lowest ID number. So the serve moves onto B.
+
+After B is served for 2 minutes, the reaming time of A and B are equal. But still, B has the lowest ID number. So B is served.
+
+Since his “food taken time” is 4 minutes, he is done with the job.
+
+Comparing the remaining students A and C, C has a longer waiting time i.e., 4 min (he was already served 4 minutes, total time being 8 min). So, C is continued with the service.
+
+After serving him for 2 minutes, the remaining time of C and A are equal. A has the lowest ID number. So the serve moves onto A.
+
+After serving A for 2 minutes, he is done with the job since his “food taken time” is 2 minutes.
+
+The serve moves onto C again to process the remaining 2 min of his “food taken time”.
+
+0    1    2    3    4    5    6    7    8    9    10    11    12    13    14
+  c    c    c    c     b    b    b    b    c     c     a      a      c      c
+
+Turn Around Time(TAT) = Completion Time(CT) - Arrival Time(AT)
+
+
+Wait Time (WT) = Turn Around Time(TAT) - Burst Time(BT)
+
+A completes the job in 12 min, arrival time is 0.
+B completes the job in 8 min, arrival time is 0.
+C completes the job in 14 min, arrival time is 0.
+
+Turn Around Time(TAT) = Completion Time(CT) - Arrival Time(AT)
+
+TAT(A) = 12 - 0 = 12 min
+
+TAT(B) =  8 - 0  =  8 min
+
+TAT(C) = 14 - 0 = 14
+Here, Burst Time(BT) = Food Taken Time
+
+Wait Time (WT) = Turn Around Time(TAT) - Burst Time(BT)
+
+WT(A) = 12 - 2 = 10
+WT(B) =   8 - 4 =   4
+WT(C) = 14 - 8 =   6
+Therefore,
+The required Average Turn Around Time = (12+8+14)/3 = 11.33 minutes
+The required Average Wait Time             = (10+4+6)/3    =  6.67 minute
