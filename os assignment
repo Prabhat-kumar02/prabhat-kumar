@@ -1,0 +1,50 @@
+Ques. 12. Three students (a, b, c) are arriving in the mess at the same time. The id numbers of these students
+are 2132, 2102, 2453 and the food taken time from the mess table is 2, 4 and 8 minutes. If the two students have 
+same remaining time so it is broken by giving priority to the students with the lowest id number. Consider the
+longest remaining time first (LRTF) scheduling algorithm and calculate the average turnaround time and waiting time.
+
+#include<stdio.h>
+int main(){
+	int burst_time[20],remain_time[20],complete_time,left=0;
+	int n;
+	int arrival_time=5;
+	
+	printf("enter the Number of Students entered in the mess :");
+	scanf("%d",&n);
+	
+	int x,Student_id[20];
+	for(x=0;x<n;x++){
+		printf("the Id of student %d: \n",x+1);
+		scanf("%d",&Student_id[x]);
+	}
+	
+	int i;
+	for(i=0;i<n;i++){
+		printf("student[%d] \n",i+1);
+		printf("enter burst time: ");
+		scanf("%d",&burst_time[i]);
+		printf("\n");
+	    remain_time[i]=burst_time[i];
+	}
+	
+	int small,time;
+	float total_wait = 0,total_turn_around = 0;
+	remain_time[19]=0;
+	for(time = 0;left != n;time++){
+		small = 19;
+		for(i=0;i<n;i++){
+			if(arrival_time<=time && burst_time[i]>remain_time[small] && remain_time[i]>0){
+				small = i;     
+			}
+		}
+		remain_time[small]--;
+		if(remain_time[small]==0){
+			left++;
+			complete_time = time ++;
+			total_turn_around += complete_time - arrival_time;
+			total_wait += complete_time - arrival_time- burst_time[small];
+		}
+	}
+	printf("The average turn around time is: %f \n",total_turn_around/n);
+	printf("The average waiting time is: %f",total_wait/n);
+}
